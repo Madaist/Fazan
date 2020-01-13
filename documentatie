@@ -1,0 +1,34 @@
+În funcția de generare a succesorilor, am plecat cu o listă inițial vidă, în care vom adăuga apoi succesorii.
+Avem apoi un for după k (k reprezintă numărul de litere din cuvânt care sunt luate în considerare pentru joc), 
+care merge de la lungimea cuvântului curent până la 2 și apoi un alt for care iterează prin toate cuvintele din listă.
+În aceste două for-uri, verific dacă ultimele k litere din cuvantul curent sunt egale cu primele k litere din cuvintele din listă.
+Dacă da, verific și dacă cele două cuvinte găsite la un moment dat nu au aceeași lungime, care să fie k.
+Dacă nu am fi verificat acest lucru, de exemplu, ultimele 6 litere din 'asasin' sunt egale cu primele 6 din 'asasin' pentru ca e acelasi cuvant, 
+deci cuvântul 'asasin' ar fi fost succesor pentru cuvantul 'asasin', ceea ce n-ar fi fost în regulă. 
+În loc de asta, aș fi putut să verific condiția ca posibilul succesor să nu existe deja în drum, dar atunci nu ne-am mai fi putut da seama
+de situația în care "un cuvant poate sa nu aiba succesor si pentru ca toate cuvintele succesoare au fost folosite deja;
+in acel caz el nu este cuvant scop".
+Pentru un astfel de cuvânt, dacă am fi păstrat verificarea ca succesorii să nu mai existe în drum, nu am mai fi adăugat niciun succesor și atunci
+l-am fi considerat scop, când de fapt el nu poate fi scop.
+Dacă posibilul succesor verifică toate condițiile, îl adăugăm în lista de succesori.
+După terminarea for-urilor, returnăm lista de succesori.
+
+Pentru a ține cont de regula că "un cuvant poate sa nu aiba succesor si pentru ca toate cuvintele succesoare au fost folosite deja;
+in acel caz el nu este cuvant scop", în momentul în care aplicăm algoritmii și lista de succesori pentru un nod este vidă, înseamnă că nodul respectiv
+este scop. Dacă nu este vidă, eliminăm succesorii care sunt deja în drum. Dacă după această eliminare nu mai avem niciun succesor, înseamnă că nodul
+se încadrează în regula menționată și nu poate fi nod scop.
+
+Pentru fisiere care nu blocheaza algoritmii (nu au foarte multe cuvinte):
+Dupa mai multe rulari pentru breadth first:
+Valoare medie memorie: 19633493. Timp mediu: 12.33 milisecunde
+
+Dupa mai multe rulari pentru depth first:
+Valoare medie memorie: 19634176. Timp mediu: 6.83 milisecunde
+
+Dupa mai multe rulari dfi:
+Valoare medie memorie: 19654157. Timp mediu: 20 milisecunde
+
+Depth first este cel mai rapid deoarece merge pe o ramura pana gaaseste o solutie sau pana se termina ramura. 
+Breadth first este mai lent deoarece dezvolta mai multe drumuri in paralel.
+DFI este cel mai lent pentru ca aplica DF pentru mai multe adancimi. 
+Memoria ocupata nu are discrepante foarte mari intre cei algoritmi pe aceste fisiere pentru ca nu sunt multe cuvinte.
